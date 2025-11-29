@@ -2,12 +2,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
@@ -416,7 +410,7 @@ const Index = () => {
             <p className="text-xl text-gray-600">Ответы на популярные вопросы</p>
           </div>
 
-          <Accordion type="single" collapsible className="space-y-4">
+          <div className="space-y-6">
             {[
               {
                 question: "Как быстро я смогу запустить сайт?",
@@ -451,16 +445,19 @@ const Index = () => {
                 answer: "Да, вы можете отменить подписку в любой момент без объяснения причин. Доступ сохранится до конца оплаченного периода."
               }
             ].map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
-                <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-700 text-base pt-2">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+              <Card key={index} className="border-2 hover:border-primary transition-all">
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-start gap-3">
+                    <Icon name="HelpCircle" size={24} className="text-primary flex-shrink-0 mt-0.5" />
+                    {faq.question}
+                  </CardTitle>
+                  <CardDescription className="text-base text-gray-700 pt-3 pl-9">
+                    {faq.answer}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
             ))}
-          </Accordion>
+          </div>
         </div>
       </section>
 
